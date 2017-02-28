@@ -12,13 +12,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
  * @author ALUMNEDAM
  */
 @Entity
+@NamedQueries({
+//@NamedQuery(name="PersonaNom", query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
+@NamedQuery(name=Client.CONSULTA, query="SELECT c FROM Client c WHERE c.nombre=:nombre")})
+@Table(name = "M6UF2_CLIENT")
 public class Client implements Serializable {
+    
+    public static final String CONSULTA = "ClientNombre";
     
     @Embedded
     private Adreca adreca;
@@ -33,6 +42,11 @@ public class Client implements Serializable {
     
     @Column(name = "nomClient")
     private String nom;
+
+    public Client() {
+    }
+    
+    
 
     public Client(Adreca adreca, String idclient, String nif, String nom, Long id) {
         this.adreca = adreca;
