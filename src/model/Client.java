@@ -27,7 +27,7 @@ import javax.persistence.Table;
 @Table(name = "M6UF2_CLIENT")
 public class Client implements Serializable {
     
-    public static final String CONSULTA = "ClientNombre";
+    public static final String CONSULTA = "ClientNom";
     
     @Embedded
     private Adreca adreca;

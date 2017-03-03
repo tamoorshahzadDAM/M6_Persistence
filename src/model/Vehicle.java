@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.IndexColumn;
@@ -23,7 +24,7 @@ import org.hibernate.annotations.IndexColumn;
  * @author ALUMNEDAM
  */
 @Entity
-@Table(name = "VEHICLES")
+@Table(name = "M6UF2_VEHICLE")
 public class Vehicle implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,7 +45,7 @@ public class Vehicle implements Serializable {
     private int anyFabricacio;
     
     @Basic(fetch = FetchType.LAZY)
-    @OneToOne
+    //@OneToMany
     @Column(name = "propietari")
     public Client propietari;
 

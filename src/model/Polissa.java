@@ -8,7 +8,6 @@ package model;
 import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Basic;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -18,7 +17,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import org.hibernate.annotations.IndexColumn;
 
 /**
@@ -26,6 +27,7 @@ import org.hibernate.annotations.IndexColumn;
  * @author ALUMNEDAM
  */
 @Entity
+@Table(name = "M6UF2_POLISSA")
 public class Polissa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,12 +42,12 @@ public class Polissa implements Serializable {
     @Column(name = "prenedor", nullable = false)
     @IndexColumn(name = "indexPrenedor")
     @Basic(fetch = FetchType.LAZY)
-    @OneToOne
+    //@OneToMany
     private Client prenedor;
 
     @Column(name = "vehicle", nullable = false)
     @Basic(fetch = FetchType.LAZY)
-    @OneToOne
+    //@OneToOne
     private Vehicle vehicle;
 
     @Column(name = "dataInici", nullable = false)
@@ -55,8 +57,8 @@ public class Polissa implements Serializable {
     private Calendar dataFi;
 
     @Column(name = "tipuPolissa", nullable = false)
-    @ElementCollection
-    @Enumerated(EnumType.STRING)
+    //@ElementCollection
+    //@Enumerated(EnumType.STRING)
     private Polissa tipuPolissa;
 
     
@@ -128,6 +130,7 @@ public class Polissa implements Serializable {
 
     public void setTipuPolissa(Polissa tipuPolissa) {
         this.tipuPolissa = tipuPolissa;
+        
     }
 
     public Asseguradora getPrima() {

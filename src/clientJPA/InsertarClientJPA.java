@@ -5,6 +5,8 @@
  */
 package clientJPA;
 
+import controlador.Client_Controller;
+import model.Adreca;
 import model.Client;
 
 /**
@@ -18,16 +20,18 @@ public class InsertarClientJPA {
 
             // Crea una nova persona
             Client cli1 = new Client();
+            Adreca adr = new Adreca();
+            
             cli1.setId(Long.MIN_VALUE);
-            cli1.setNif(nif);
-            cli1.setNom(nom);
-            cli1.setAdreca(adreca);
+            cli1.setNif("X8587455Z");
+            cli1.setNom("Tamoor");
+            cli1.setAdreca(adr);
+            
+            Client_Controller cc = new Client_Controller();
+            cc.Insertar(cli1);
             
             
-            persona1.setNombre("Jorge");
-            persona1.setApellidos("Rubio");
-            persona1.setEmail("jorge@rubio.net");
-            persona1.setTelefono("987654321");
+ /**           
 
             Persona persona2 = new Persona();
             persona2.setNombre("Emilio");
@@ -56,6 +60,7 @@ public class InsertarClientJPA {
 //            pc.Insertar(persona1);
 //            pc.Insertar(persona2);
 //            pc.Consulta();
+* 
             //2n DESCOMENTEM LES 3 LINIES SEGUENTS, EXECUTEM LA @NamedQuery
             String nom = "Emilio";
             Persona p = pc.BuscarPerNom(nom); //PRIMER IDPERSONA
@@ -75,7 +80,7 @@ public class InsertarClientJPA {
 //
 //            pc.Consulta();
             System.out.println("FI");
-
+*/
         } catch (Exception ex) {
             ex.printStackTrace();
         }

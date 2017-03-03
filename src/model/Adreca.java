@@ -8,12 +8,14 @@ package model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Table;
 
 /**
  *
  * @author ALUMNEDAM
  */
 @Embeddable
+@Table(name = "M6UF2_Adreca")
 public class Adreca implements Serializable {
 
     @Column(name = "carrer", length = 50, nullable = false)
@@ -29,6 +31,9 @@ public class Adreca implements Serializable {
         this.carrer = carrer;
         this.numero = numero;
         this.poblacion = poblacion;
+    }
+
+    public Adreca() {
     }
     
     

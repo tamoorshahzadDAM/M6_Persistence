@@ -12,12 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author ALUMNEDAM
  */
 @Entity
+@Table(name = "M6UF2_Asseguradora")
 public class Asseguradora implements Serializable {
 
     private static final long serialVersionUID = 1L;

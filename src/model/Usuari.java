@@ -11,12 +11,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author ALUMNEDAM
  */
 @Entity
+@Table(name = "M6UF2_USUARI")
 public class Usuari implements Serializable {
 
     @Column(name = "usuario", length = 30, nullable = false, unique = true)
