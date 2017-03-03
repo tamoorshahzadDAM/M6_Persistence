@@ -104,6 +104,10 @@ public class Client_Controller {
         return c;
     }
     
+    public void imprimir(Client c) {
+        System.out.println(c);
+    }
+    
     
     
 }

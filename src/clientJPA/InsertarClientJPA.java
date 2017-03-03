@@ -17,20 +17,31 @@ public class InsertarClientJPA {
 
      public static void main(String[] args) {
         try {
-
-            // Crea una nova persona
+    
+            ////  --------------Insertar-------------------
+            // Insertar un cliente
             Client cli1 = new Client();
             Adreca adr = new Adreca();
+            adr.setCarrer("C/Monturiol ");
+            adr.setNumero(60);
+            adr.setPoblacion("Ripollet");
             
-            cli1.setId(Long.MIN_VALUE);
             cli1.setNif("X8587455Z");
-            cli1.setNom("Tamoor");
+            cli1.setNom("Tamoor Shahzad");
             cli1.setAdreca(adr);
             
+            
             Client_Controller cc = new Client_Controller();
-            cc.Insertar(cli1);
+            //cc.Insertar(cli1);
+            ///  ------------------------------------------
             
-            
+            /// -----------Buscar----------
+            String nom = "Tamoor Shahzad";
+            Client c = cc.BuscarPerNom(nom); //PRIMER IDPERSONA
+            cc.imprimir(c);
+            //////// -----------------------
+            //cc.Eliminar(cli1); //Para borar el cliente
+            //cc.Modificar(cli1);
  /**           
 
             Persona persona2 = new Persona();

@@ -22,38 +22,35 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQueries({
-//@NamedQuery(name="PersonaNom", query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
-@NamedQuery(name=Client.CONSULTA, query="SELECT c FROM Client c WHERE c.nombre=:nombre")})
+    //@NamedQuery(name="PersonaNom", query="SELECT p FROM Persona p WHERE p.nombre=:nombre")})
+    @NamedQuery(name = Client.CONSULTA, query = "SELECT c FROM Client c WHERE c.nom=:nombre")})
 @Table(name = "M6UF2_CLIENT")
 public class Client implements Serializable {
-    
+
     public static final String CONSULTA = "ClientNom";
-    
+
     @Embedded
     private Adreca adreca;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idCliente")
-    private String idClient;
-    
-    @Column(name = "nif", length = 9, nullable = false, unique =true)
+    private Long idClient;
+
+    @Column(name = "nif", length = 9, nullable = false, unique = true)
     private String nif;
-    
+
     @Column(name = "nomClient")
     private String nom;
 
     public Client() {
     }
-    
-    
 
-    public Client(Adreca adreca, String idclient, String nif, String nom, Long id) {
+    public Client(Adreca adreca, Long idClient, String nif, String nom) {
         this.adreca = adreca;
-        this.idClient = idclient;
+        this.idClient = idClient;
         this.nif = nif;
         this.nom = nom;
-        this.id = id;
     }
 
     public Adreca getAdreca() {
@@ -64,12 +61,12 @@ public class Client implements Serializable {
         this.adreca = adreca;
     }
 
-    public String getIdclient() {
+    public Long getIdClient() {
         return idClient;
     }
 
-    public void setIdclient(String idclient) {
-        this.idClient = idclient;
+    public void setIdClient(Long idClient) {
+        this.idClient = idClient;
     }
 
     public String getNif() {
@@ -87,30 +84,13 @@ public class Client implements Serializable {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
-    
-    
-    
-    
-    
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idClient != null ? idClient.hashCode() : 0);
         return hash;
     }
 
@@ -121,7 +101,7 @@ public class Client implements Serializable {
             return false;
         }
         Client other = (Client) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idClient == null && other.idClient != null) || (this.idClient != null && !this.idClient.equals(other.idClient))) {
             return false;
         }
         return true;
@@ -129,9 +109,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "Client{" + "adreca=" + adreca + ", idclient=" + idClient + ", nif=" + nif + ", nom=" + nom + ", id=" + id + '}';
+        return "Client{" + "adreca=" + adreca + ", idClient=" + idClient + ", nif=" + nif + ", nom=" + nom + ", id=" + idClient + '}';
     }
 
-    
-    
 }
