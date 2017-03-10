@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,9 +24,13 @@ import javax.persistence.Table;
  * @author ALUMNEDAM
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = Asseguradora.CONSULTA, query = "SELECT a FROM Client a WHERE a.nomasseg=:nomasseg")})
 @Table(name = "M6UF2_Asseguradora")
 public class Asseguradora implements Serializable {
 
+    public static final String CONSULTA = "nomAsseg";
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +53,10 @@ public class Asseguradora implements Serializable {
         this.nomasseg = nomasseg;
         this.nifAsseg = nifAsseg;
     }
+
+    public Asseguradora() {
+    }
+    
 
     public Long getIdAsseg() {
         return idAsseg;

@@ -95,6 +95,9 @@ public class Polissa implements Serializable {
         this.prima = prima;
     }
 
+    public Polissa() {
+    }
+
     public int getIdPolissa() {
         return idPolissa;
     }

@@ -62,6 +62,9 @@ public class Vehicle implements Serializable {
         this.polissa = polissa;
     }
 
+    public Vehicle() {
+    }
+
     public Long getIdVehivle() {
         return idVehicle;
     }
