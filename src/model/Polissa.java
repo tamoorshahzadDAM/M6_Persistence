@@ -17,9 +17,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.IndexColumn;
 
 /**
@@ -27,12 +32,24 @@ import org.hibernate.annotations.IndexColumn;
  * @author ALUMNEDAM
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = Polissa.CONSULTA1, query = "SELECT p FROM Polissa p WHERE p.prenedor=:Prenedor"),
+    @NamedQuery(name = Polissa.CONSULTA2, query = "SELECT p FROM Polissa p WHERE p.vehicle:vehicle")
+})
 @Table(name = "M6UF2_POLISSA")
 public class Polissa implements Serializable {
 
+    
+    public static final String CONSULTA1 = "PolissaPrenedor";
+    public static final String CONSULTA2 = "PolissaVehicle";
+    
+    
+    
+    
+    
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPolissa")
     private int idPolissa;
 
@@ -42,12 +59,14 @@ public class Polissa implements Serializable {
     @Column(name = "prenedor", nullable = false)
     @IndexColumn(name = "indexPrenedor")
     @Basic(fetch = FetchType.LAZY)
-    //@OneToMany
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="propietariPolissa")
     private Client prenedor;
 
     @Column(name = "vehicle", nullable = false)
     @Basic(fetch = FetchType.LAZY)
-    //@OneToOne
+    @OneToOne
+    @JoinColumn(name="PolissaVehicle")
     private Vehicle vehicle;
 
     @Column(name = "dataInici", nullable = false)

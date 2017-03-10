@@ -6,6 +6,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,7 +30,7 @@ import javax.persistence.Table;
 @Table(name = "M6UF2_CLIENT")
 public class Client implements Serializable {
 
-    public static final String CONSULTA = "ClientNom";
+    public static final String CONSULTA = "nomClient";
 
     @Embedded
     private Adreca adreca;
@@ -39,9 +42,18 @@ public class Client implements Serializable {
 
     @Column(name = "nif", length = 9, nullable = false, unique = true)
     private String nif;
+    
+    
 
     @Column(name = "nomClient")
     private String nom;
+    
+    @OneToMany (mappedBy = "propietari")
+    List<Vehicle> vehicle = new ArrayList<>();
+    
+    @OneToMany (mappedBy = "prenedor")
+    List<Polissa> polissa = new ArrayList<>();
+    
 
     public Client() {
     }

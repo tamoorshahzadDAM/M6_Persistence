@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clientJPA;
+package InsertJPA;
 
 import controlador.Client_Controller;
 import model.Adreca;
@@ -13,7 +13,7 @@ import model.Client;
  *
  * @author ALUMNEDAM
  */
-public class InsertarClientJPA {
+public class ClientJPA {
 
     public static void main(String[] args) {
         try {

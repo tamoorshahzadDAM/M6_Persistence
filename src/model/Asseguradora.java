@@ -6,12 +6,15 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,16 +27,20 @@ public class Asseguradora implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idAsseguradora", nullable = false)
     private Long idAsseg;
     
     
-    @Column(name = "nomAsseguradora", length = 100, nullable = false)
+    @Column(name = "nomAsseguradora", length = 100, nullable = false, unique = true)
     private String nomasseg;
 
     @Column(name = "nifAsseguradora")
     private String nifAsseg;
+    
+    @OneToMany (mappedBy = "poli")
+    List<Polissa> polissa = new ArrayList<>();
+    
 
     public Asseguradora(Long idAsseg, String nomasseg, String nifAsseg) {
         this.idAsseg = idAsseg;

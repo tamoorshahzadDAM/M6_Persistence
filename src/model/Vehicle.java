@@ -24,14 +24,14 @@ import org.hibernate.annotations.IndexColumn;
  * @author ALUMNEDAM
  */
 @Entity
-@Table(name = "M6UF2_VEHICLE")
+@Table(name = "VEHICLES")
 public class Vehicle implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "idVehicle")
-    private Long idVehivle;
+    private Long idVehicle;
     
     
     @Column(name = "matricula", length = 7, unique = true, nullable = false)
@@ -47,22 +47,27 @@ public class Vehicle implements Serializable {
     @Basic(fetch = FetchType.LAZY)
     //@OneToMany
     @Column(name = "propietari")
+    //@Basic(fetch = FetchType.LAZY)
     public Client propietari;
+    
+    @OneToOne (mappedBy = "PolissaVehicle")
+    private Polissa polissa;
 
-    public Vehicle(Long idVehivle, String matricula, String marcaModel, int anyFabricacio, Client propietari) {
-        this.idVehivle = idVehivle;
+    public Vehicle(Long idVehivle, String matricula, String marcaModel, int anyFabricacio, Client propietari, Polissa polissa) {
+        this.idVehicle = idVehivle;
         this.matricula = matricula;
         this.marcaModel = marcaModel;
         this.anyFabricacio = anyFabricacio;
         this.propietari = propietari;
+        this.polissa = polissa;
     }
 
     public Long getIdVehivle() {
-        return idVehivle;
+        return idVehicle;
     }
 
     public void setIdVehivle(Long idVehivle) {
-        this.idVehivle = idVehivle;
+        this.idVehicle = idVehivle;
     }
 
     public String getMatricula() {
@@ -107,7 +112,7 @@ public class Vehicle implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idVehivle != null ? idVehivle.hashCode() : 0);
+        hash += (idVehicle != null ? idVehicle.hashCode() : 0);
         return hash;
     }
 
@@ -118,7 +123,7 @@ public class Vehicle implements Serializable {
             return false;
         }
         Vehicle other = (Vehicle) object;
-        if ((this.idVehivle == null && other.idVehivle != null) || (this.idVehivle != null && !this.idVehivle.equals(other.idVehivle))) {
+        if ((this.idVehicle == null && other.idVehicle != null) || (this.idVehicle != null && !this.idVehicle.equals(other.idVehicle))) {
             return false;
         }
         return true;
@@ -126,7 +131,7 @@ public class Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "Vehicle{" + "idVehivle=" + idVehivle + ", matricula=" + matricula + ", marcaModel=" + marcaModel + ", anyFabricacio=" + anyFabricacio + ", propietari=" + propietari + '}';
+        return "Vehicle{" + "idVehivle=" + idVehicle + ", matricula=" + matricula + ", marcaModel=" + marcaModel + ", anyFabricacio=" + anyFabricacio + ", propietari=" + propietari + '}';
     }
 
    
