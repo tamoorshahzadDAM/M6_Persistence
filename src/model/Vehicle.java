@@ -50,7 +50,7 @@ public class Vehicle implements Serializable {
     //@Basic(fetch = FetchType.LAZY)
     public Client propietari;
     
-    @OneToOne (mappedBy = "PolissaVehicle")
+    @OneToOne(mappedBy = "vehicle")
     private Polissa polissa;
 
     public Vehicle(Long idVehivle, String matricula, String marcaModel, int anyFabricacio, Client propietari, Polissa polissa) {

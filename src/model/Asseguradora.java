@@ -25,7 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Asseguradora.CONSULTA, query = "SELECT a FROM Client a WHERE a.nomasseg=:nomasseg")})
+    @NamedQuery(name = Asseguradora.CONSULTA, query = "SELECT a FROM Asseguradora a WHERE a.nomasseg=:NomAsseg")})
 @Table(name = "M6UF2_Asseguradora")
 public class Asseguradora implements Serializable {
 
@@ -44,7 +44,7 @@ public class Asseguradora implements Serializable {
     @Column(name = "nifAsseguradora")
     private String nifAsseg;
     
-    @OneToMany (mappedBy = "poli")
+    @OneToMany (mappedBy = "numPolissa")
     List<Polissa> polissa = new ArrayList<>();
     
 

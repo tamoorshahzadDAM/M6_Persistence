@@ -17,6 +17,16 @@ public class M6_Practica_Persistence {
     public static void main(String[] args) {
         
         
+        /**
+         DROP TABLE M6UF2_Adreca; 
+         DROP TABLE M6UF2_Asseguradora; 
+         DROP TABLE M6UF2_CLIENT; 
+         DROP TABLE M6UF2_POLISSA; 
+         DROP TABLE M6UF2_USUARI; 
+         DROP TABLE VEHICLES;
+         
+         */
+        
         
         
     }

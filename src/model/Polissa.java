@@ -33,16 +33,17 @@ import org.hibernate.annotations.IndexColumn;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Polissa.CONSULTA1, query = "SELECT p FROM Polissa p WHERE p.prenedor=:Prenedor"),
-    @NamedQuery(name = Polissa.CONSULTA2, query = "SELECT p FROM Polissa p WHERE p.vehicle:vehicle")
+    //@NamedQuery(name = Polissa.Polissa_Prenedor, query = "SELECT p FROM Polissa p WHERE p.prenedor=:Prenedor"),
+    //@NamedQuery(name = Polissa.Polissa_Vehicle, query = "SELECT p FROM Polissa p WHERE p.vehicle:Vehicle")
+    @NamedQuery(name="Cerca_Polissa_Client", query="SELECT p FROM Polissa p WHERE p.cliente=:cliente")
 })
 @Table(name = "M6UF2_POLISSA")
 public class Polissa implements Serializable {
 
     
-    public static final String CONSULTA1 = "PolissaPrenedor";
-    public static final String CONSULTA2 = "PolissaVehicle";
-    
+    //public static final String Polissa_Prenedor = "PolissaPrenedor";
+    //public static final String Polissa_Vehicle = "PolissaVehicle";
+    public static final String Cerca_Polissa_Client = "CercaPolissaClient";
     
     
     
@@ -59,15 +60,20 @@ public class Polissa implements Serializable {
     @Column(name = "prenedor", nullable = false)
     @IndexColumn(name = "indexPrenedor")
     @Basic(fetch = FetchType.LAZY)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="propietariPolissa")
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@ManyToOne
+    //@JoinColumn(name="propietariPolissa")
     private Client prenedor;
 
-    @Column(name = "vehicle", nullable = false)
-    @Basic(fetch = FetchType.LAZY)
+    //@Column(name = "vehicle", nullable = false)
+    //@Basic(fetch = FetchType.LAZY)
     @OneToOne
-    @JoinColumn(name="PolissaVehicle")
+    @JoinColumn(name = "vehicle")
     private Vehicle vehicle;
+    
+    @ManyToOne (fetch = FetchType.LAZY) 
+    @JoinColumn(name = "idClient")
+    private Client cliente;
 
     @Column(name = "dataInici", nullable = false)
     private Calendar dataInici;

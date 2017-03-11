@@ -29,24 +29,36 @@ public class ClientJPA {
             cli1.setNif("X8587455Z");
             cli1.setNom("Tamoor Shahzad");
             cli1.setAdreca(adr);
-
+/**
             //------------ INSERTAR -----------------------
             Client_Controller cc = new Client_Controller();
-            // cc.Insertar(cli1);
+            //cc.Insertar(cli1);
             ///  ------------------------------------------
+*/
 
+/**
             /// ----------- BUSCAR ------------------------
             String nom = "Tamoor Shahzad";
             Client c = cc.BuscarPerNom(nom); //PRIMER IDPERSONA
             cc.imprimir(c);
+*/
 
+
+/**
             //////// --------------- BORRAR ---------------
             //Borra por nombre
-            //String nom = "Tamoor Shahzad";
-            //Client c = cc.BuscarPerNom(nom);
-            //cc.Eliminar(c); //Para borar el cliente
+            String nom = "prueba Shahzad";
+            Client c = cc.BuscarPerNom(nom);
+            cc.Eliminar(c); //Para borar el cliente
+ */           
+         
+/**
             //-------------- Nodificar---------------------
+            Client_Controller cc = new Client_Controller();
             Adreca adrmod = new Adreca();
+            String nom = "Tamoor Shahzad";
+            Client c = cc.BuscarPerNom(nom);
+            
             adrmod.setCarrer("C/Mont ");
             adrmod.setNumero(60);
             adrmod.setPoblacion("Ripo");
@@ -54,6 +66,8 @@ public class ClientJPA {
             c.setNom("Tamoor");
             c.setAdreca(adrmod);
             cc.Modificar(c);
+*/
+
 
         } catch (Exception ex) {
             ex.printStackTrace();
