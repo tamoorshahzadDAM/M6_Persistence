@@ -6,17 +6,16 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import org.hibernate.annotations.IndexColumn;
 
 /**
@@ -44,17 +43,15 @@ public class Vehicle implements Serializable {
     @Column(name = "anyFabricacio")
     private int anyFabricacio;
     
-    @Basic(fetch = FetchType.LAZY)
-    //@OneToMany
-    @Column(name = "propietari")
-    //@Basic(fetch = FetchType.LAZY)
-    public Client propietari;
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "idClient")
+    private Client propietari;
     
     @OneToOne(mappedBy = "vehicle")
     private Polissa polissa;
 
-    public Vehicle(Long idVehivle, String matricula, String marcaModel, int anyFabricacio, Client propietari, Polissa polissa) {
-        this.idVehicle = idVehivle;
+    public Vehicle( String matricula, String marcaModel, int anyFabricacio, Client propietari, Polissa polissa) {
         this.matricula = matricula;
         this.marcaModel = marcaModel;
         this.anyFabricacio = anyFabricacio;

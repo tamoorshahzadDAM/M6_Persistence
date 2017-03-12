@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -33,9 +34,10 @@ import org.hibernate.annotations.IndexColumn;
  */
 @Entity
 @NamedQueries({
-    //@NamedQuery(name = Polissa.Polissa_Prenedor, query = "SELECT p FROM Polissa p WHERE p.prenedor=:Prenedor"),
+    @NamedQuery(name = "Cerca_Polissa_Prenedor", query = "SELECT p FROM Polissa p WHERE p.prenedor=:Prenedor"),
     //@NamedQuery(name = Polissa.Polissa_Vehicle, query = "SELECT p FROM Polissa p WHERE p.vehicle:Vehicle")
-    @NamedQuery(name="Cerca_Polissa_Client", query="SELECT p FROM Polissa p WHERE p.cliente=:cliente")
+    //@NamedQuery(name = "Cerca_Polissa_Client", query = "SELECT p FROM Polissa p WHERE p.cliente.idClient:cliente"),
+    @NamedQuery(name = "Cerca_Polissa_Vehicle", query = "SELECT p FROM Polissa p WHERE p.vehicle.idVehicle=:vehicle")
 })
 @Table(name = "M6UF2_POLISSA")
 public class Polissa implements Serializable {
@@ -43,15 +45,15 @@ public class Polissa implements Serializable {
     
     //public static final String Polissa_Prenedor = "PolissaPrenedor";
     //public static final String Polissa_Vehicle = "PolissaVehicle";
-    public static final String Cerca_Polissa_Client = "CercaPolissaClient";
+    //public static final String Cerca_Polissa_Client = "CercaPolissaClient";
     
     
     
     
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPolissa")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idPolissa", unique = true)
     private int idPolissa;
 
     @Column(name = "numPolissa", length = 10)
@@ -76,30 +78,53 @@ public class Polissa implements Serializable {
     private Client cliente;
 
     @Column(name = "dataInici", nullable = false)
-    private Calendar dataInici;
+    private Date dataInici;
 
     @Column(name = "dataFi", nullable = false)
-    private Calendar dataFi;
+    private Date dataFi;
 
     @Column(name = "tipuPolissa", nullable = false)
     //@ElementCollection
     //@Enumerated(EnumType.STRING)
-    private Polissa tipuPolissa;
+    private boolean tipuPolissa;
 
     
-    @Column(name = "prima")
-    private Asseguradora prima;
+    @ManyToOne
+    @JoinColumn(name = "idAsseguradora")
+    private Asseguradora asseguradora;
+    
+    @Column (name = "prima")
+    private double prima;
 
-    public Polissa(int idPolissa, String numPolissa, Client prenedor, Vehicle vehicle, Calendar dataInici, Calendar dataFi, Polissa tipuPolissa, Asseguradora prima) {
-        this.idPolissa = idPolissa;
+    public Polissa(String numPolissa, Client prenedor, Vehicle vehicle, Client cliente, Date dataInici, Date dataFi, boolean tipuPolissa, Asseguradora asseguradora, double prima) {
         this.numPolissa = numPolissa;
         this.prenedor = prenedor;
         this.vehicle = vehicle;
+        this.cliente = cliente;
         this.dataInici = dataInici;
         this.dataFi = dataFi;
         this.tipuPolissa = tipuPolissa;
+        this.asseguradora = asseguradora;
         this.prima = prima;
     }
+
+    public Client getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Client cliente) {
+        this.cliente = cliente;
+    }
+
+    public Asseguradora getAsseguradora() {
+        return asseguradora;
+    }
+
+    public void setAsseguradora(Asseguradora asseguradora) {
+        this.asseguradora = asseguradora;
+    }
+
+    
 
     public Polissa() {
     }
@@ -136,36 +161,36 @@ public class Polissa implements Serializable {
         this.vehicle = vehicle;
     }
 
-    public Calendar getDataInici() {
+    public Date getDataInici() {
         return dataInici;
     }
 
-    public void setDataInici(Calendar dataInici) {
+    public void setDataInici(Date dataInici) {
         this.dataInici = dataInici;
     }
 
-    public Calendar getDataFi() {
+    public Date getDataFi() {
         return dataFi;
     }
 
-    public void setDataFi(Calendar dataFi) {
+    public void setDataFi(Date dataFi) {
         this.dataFi = dataFi;
     }
 
-    public Polissa getTipuPolissa() {
+    public boolean getTipuPolissa() {
         return tipuPolissa;
     }
 
-    public void setTipuPolissa(Polissa tipuPolissa) {
+    public void setTipuPolissa(boolean tipuPolissa) {
         this.tipuPolissa = tipuPolissa;
         
     }
 
-    public Asseguradora getPrima() {
+    public double getPrima() {
         return prima;
     }
 
-    public void setPrima(Asseguradora prima) {
+    public void setPrima(double prima) {
         this.prima = prima;
     }
     
@@ -200,8 +225,10 @@ public class Polissa implements Serializable {
 
     @Override
     public String toString() {
-        return "Polissa{" + "idPolissa=" + idPolissa + ", numPolissa=" + numPolissa + ", prenedor=" + prenedor + ", vehicle=" + vehicle + ", dataInici=" + dataInici + ", dataFi=" + dataFi + ", tipuPolissa=" + tipuPolissa + ", prima=" + prima + '}';
+        return "Polissa{" + "idPolissa=" + idPolissa + ", numPolissa=" + numPolissa + ", prenedor=" + prenedor + ", vehicle=" + vehicle + ", cliente=" + cliente + ", dataInici=" + dataInici + ", dataFi=" + dataFi + ", tipuPolissa=" + tipuPolissa + ", asseguradora=" + asseguradora + ", prima=" + prima + '}';
     }
+
+    
 
     
 

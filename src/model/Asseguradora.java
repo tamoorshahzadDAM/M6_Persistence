@@ -33,7 +33,7 @@ public class Asseguradora implements Serializable {
     
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idAsseguradora", nullable = false)
     private Long idAsseg;
     
@@ -48,8 +48,7 @@ public class Asseguradora implements Serializable {
     List<Polissa> polissa = new ArrayList<>();
     
 
-    public Asseguradora(Long idAsseg, String nomasseg, String nifAsseg) {
-        this.idAsseg = idAsseg;
+    public Asseguradora( String nomasseg, String nifAsseg) {
         this.nomasseg = nomasseg;
         this.nifAsseg = nifAsseg;
     }

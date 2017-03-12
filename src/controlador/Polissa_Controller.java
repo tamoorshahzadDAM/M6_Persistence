@@ -9,7 +9,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import model.Asseguradora;
 import model.Client;
 import model.Polissa;
 
@@ -112,6 +111,16 @@ public class Polissa_Controller {
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }
+    }
+    public void BuscarPerClientLlista(Client client) {
+        EntityManager em = new EM_Controller().getEntityManager();
+        System.out.println("Busqueda per idClient");
+        Query query = em.createNamedQuery("cerca_Polizas_Cliente", Polissa.class);
+        query.setParameter("cliente", client.getIdClient());
+        List<Polissa> lista = (List<Polissa>) query.getResultList();
+        System.out.println(lista);
+        System.out.println("close");
+        em.close();
     }
     
 }

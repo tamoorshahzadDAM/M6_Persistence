@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -18,8 +20,13 @@ import javax.persistence.Table;
  * @author ALUMNEDAM
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = Usuari.CONSULTA, query = "SELECT u FROM Usuari u WHERE u.usuario=:nombre")
+})
 @Table(name = "M6UF2_USUARI")
 public class Usuari implements Serializable {
+    
+    public static final String CONSULTA = "nomUsuario";
 
     @Column(name = "usuario", length = 30, nullable = false, unique = true)
     private String usuario;
@@ -31,10 +38,9 @@ public class Usuari implements Serializable {
 
     }
 
-    public Usuari(String usuario, String contra, Long id) {
+    public Usuari(String usuario, String contra) {
         this.usuario = usuario;
         this.contra = contra;
-        this.id = id;
     }
 
     public String getUsuario() {

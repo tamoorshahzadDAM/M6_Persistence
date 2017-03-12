@@ -109,5 +109,21 @@ public class Usuari_Controller {
         }
     }
     
+    public Usuari BuscarPerNom(String nom) {
+        // Recupera el entity manager
+        EntityManager em = new EM_Controller().getEntityManager();
+
+        System.out.println("Busqueda per nom");
+        //Query query = em.createNamedQuery("PersonaNom",Persona.class);
+        Query query = em.createNamedQuery(Usuari.CONSULTA,Usuari.class);
+        query.setParameter("nombre", nom);
+        Usuari c = (Usuari) query.getSingleResult();
+
+        System.out.println("close");
+        em.close();
+
+        return c;
+    }
+    
     
 }
