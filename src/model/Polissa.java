@@ -6,14 +6,11 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,10 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.IndexColumn;
 
 /**
@@ -35,6 +30,7 @@ import org.hibernate.annotations.IndexColumn;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Cerca_Polissa_Prenedor", query = "SELECT p FROM Polissa p WHERE p.prenedor=:Prenedor"),
+    @NamedQuery(name = "buscaPerNom", query = "SELECT p FROM Polissa p WHERE p.numPolissa:nombre"),
     //@NamedQuery(name = Polissa.Polissa_Vehicle, query = "SELECT p FROM Polissa p WHERE p.vehicle:Vehicle")
     //@NamedQuery(name = "Cerca_Polissa_Client", query = "SELECT p FROM Polissa p WHERE p.cliente.idClient:cliente"),
     @NamedQuery(name = "Cerca_Polissa_Vehicle", query = "SELECT p FROM Polissa p WHERE p.vehicle.idVehicle=:vehicle")
@@ -73,12 +69,13 @@ public class Polissa implements Serializable {
     //Columna para vehicle, tienes relacion uno a uno
     //@Column(name = "vehicle", nullable = false)
     //@Basic(fetch = FetchType.LAZY)
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL) 
     @JoinColumn(name = "vehicle")
     private Vehicle vehicle;
     
     //Relacion muchos a uno, con idclient
-    @ManyToOne (fetch = FetchType.LAZY) 
+    @ManyToOne(cascade=CascadeType.ALL) 
+    @Basic(fetch = FetchType.LAZY)
     @JoinColumn(name = "idClient")
     private Client cliente;
 
@@ -97,8 +94,8 @@ public class Polissa implements Serializable {
     private boolean tipuPolissa;
 
     //Relacion de muchos a uno con id de asseguradora
-    @ManyToOne
-    @JoinColumn(name = "idAsseguradora")
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "asseguradoraId")
     private Asseguradora asseguradora;
     
     //Columna para prima el costo.

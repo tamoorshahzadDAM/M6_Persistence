@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import org.hibernate.annotations.IndexColumn;
@@ -27,8 +27,8 @@ import org.hibernate.annotations.IndexColumn;
 @Entity
 @NamedQueries({
     //Queries
-    @NamedQuery(name="cercaClient", query="SELECT c FROM Client c WHERE c.idClient:id"),
-    @NamedQuery(name="cercaVehicle", query="SELECT c FROM Vehicle c WHERE c.idVehicle:id"),
+    //@NamedQuery(name="cercaClient", query="SELECT c FROM Client c WHERE c.idClient:id"),
+    //@NamedQuery(name="cercaVehicle", query="SELECT c FROM Vehicle c WHERE c.idVehicle:id"),
     @NamedQuery(name = "cercaVehicleMat", query = "Select v FROM Vehicle v WHERE v.matricula=:matricula")
 })
 @Table(name = "VEHICLES")
@@ -56,7 +56,7 @@ public class Vehicle implements Serializable {
     
     //Relacion de muchos a uno, junta con columna de idClient.
     //@ManyToOne(cascade=CascadeType.ALL)
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "idClient")
     private Client propietari;
     

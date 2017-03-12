@@ -51,14 +51,15 @@ public class NewMain {
 
         
         
-       // *******************************  Client *********************************
+       // *************************************  Client ****************************************************************
         
 
         // --------- Insertar Cliente ------------
-        
+
+/**        
         Client_Controller cc = new Client_Controller();
-        //cc.Insertar(client);
- 
+        cc.Insertar(client);
+ */
 
 /**
         // ---------------- Elimina -------------------
@@ -84,7 +85,7 @@ public class NewMain {
 
 
 
-// *************************  Usuario ******************************************
+// ******************************************  Usuario ********************************************************
 
 
 /**
@@ -108,12 +109,60 @@ public class NewMain {
         uc.Eliminar(u);
 */
 
+
+        
+        
+// ************************* POLISSA ****************************************************************************
+
+/**
+        //Lo inserta
         Polissa_Controller pc = new Polissa_Controller();
-        //pc.Insertar(pol);
+        pc.Insertar(pol);
+        
+        //Elimina la polisa que le pasamos por parametros
+        pc.Eliminar(pol);
+        
+        //Modifica
+        pc.Modificar(pol);
+        pc.BuscarPerClientLlista(client);
 
+*/
+        
 
+// ******************************* VEHICLE *******************************************************************
+
+    // --------- INSERTAR ---------------------
+   
+/**
         Vehicle_Controller vehi = new Vehicle_Controller();
         vehi.Insertar(vehicle);
+        
+        // ------------- ELIMINAR -------------------
+        vehi.Eliminar(vehicle);
+        
+        // -------------- MODIFICAR ---------------------
+        //por parametros le paso una matricula
+        Vehicle v = vehi.cercaVehicleMat("0296cdy");
+        v.setAnyFabricacio(2014);
+        v.setPropietari(pre);
+        vehi.Modificar(v);
+ 
+*/
+
+// ************************************  ASSEGURADORA ****************************************************************
+
+    Asseguradora_Controller  ac = new  Asseguradora_Controller();
+    //Lo inserta
+    ac.Insertar(asse);
+    //Elimina
+    ac.Eliminar(asse);
+    
+    //Modifica
+    ac.Modificar(asse);
+    //Imprime
+    ac.imprimir(asse);
+    //Consulta
+    ac.Consulta();
 
     }
 

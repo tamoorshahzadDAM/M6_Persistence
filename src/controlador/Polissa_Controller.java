@@ -149,4 +149,26 @@ public class Polissa_Controller {
         em.close();
     }
     
+    /**
+     * Methodo que le paso por parametros un nombre, y lo busca en base de datos
+     * y devuelve.
+     * @param nom
+     * @return 
+     */
+    public Client BuscarPerNom(String nom) {
+        // Recupera el entity manager
+        EntityManager em = new EM_Controller().getEntityManager();
+
+        System.out.println("Busqueda per nom");
+        //Query query = em.createNamedQuery("PersonaNom",Persona.class);
+        Query query = em.createNamedQuery(Client.CONSULTA,Client.class);
+        query.setParameter("nombre", nom);
+        Client c = (Client) query.getSingleResult();
+
+        System.out.println("close");
+        em.close();
+
+        return c;
+    }
+    
 }

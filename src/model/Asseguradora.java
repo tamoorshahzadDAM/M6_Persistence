@@ -49,8 +49,8 @@ public class Asseguradora implements Serializable {
     private String nifAsseg;
 
     //Relacion uno a muchas, uniondo relacion con polissa
-    @OneToMany(mappedBy = "numPolissa")
-    List<Polissa> polissa = new ArrayList<>();
+    @OneToMany(mappedBy = "asseguradora")
+    private List<Polissa> polissa;
 
     /**
      * Constructor
