@@ -24,6 +24,18 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
+    
+    
+    /**
+         DROP TABLE M6UF2_Adreca; 
+         DROP TABLE M6UF2_POLISSA; 
+         DROP TABLE M6UF2_USUARI; 
+         DROP TABLE VEHICLES;
+         DROP TABLE M6UF2_CLIENT; 
+         DROP TABLE M6UF2_Asseguradora; 
+         */
+    
+    
     public static void main(String[] args) throws ParseException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -97,11 +109,11 @@ public class NewMain {
 */
 
         Polissa_Controller pc = new Polissa_Controller();
-        pc.Insertar(pol);
+        //pc.Insertar(pol);
 
 
         Vehicle_Controller vehi = new Vehicle_Controller();
-        //vehi.Insertar(vehicle);
+        vehi.Insertar(vehicle);
 
     }
 

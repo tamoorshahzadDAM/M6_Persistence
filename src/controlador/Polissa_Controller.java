@@ -20,7 +20,11 @@ public class Polissa_Controller {
     
     
     
-    
+    /**
+     * Methodo que por parametros le pasamos un objeto Polissa y lo 
+     * inserta en base de datos
+     * @param p 
+     */
     public void Insertar(Polissa p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -44,7 +48,12 @@ public class Polissa_Controller {
         em.close();
     }
     
-    
+    /**
+     * Methodo que por parametros le pasamos un objeto Polissa y lo modifica en 
+     * base de datos, con ayuda de otro methodo de buscar, primero busca y 
+     * luego modifica.
+     * @param p 
+     */
     public void Modificar(Polissa p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -68,6 +77,11 @@ public class Polissa_Controller {
         em.close();
     }
 
+    /**
+     * Methodo que por parametros le pasamos un objeto Polissa y lo 
+     * elimina en base de datos
+     * @param p 
+     */
     public void Eliminar(Polissa p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -91,7 +105,9 @@ public class Polissa_Controller {
         em.close();
     }
     
-    
+    /**
+     * MEthodo que hace consulta en base de datos
+     */
     public void Consulta() {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -106,12 +122,22 @@ public class Polissa_Controller {
         em.close();
     }
 
+    /**
+     * Methodo para imprimir una lista
+     * @param lista 
+     */
     public void imprimirLista(List<Polissa> lista) {
-        System.out.println("Numero de clients= " + lista.size());
+        System.out.println("Numero de Polissas= " + lista.size());
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }
     }
+    
+    /**
+     * Methodo que por parametro le paso un cliente y el lo busca en la lista y
+     * lo muestra.
+     * @param client 
+     */
     public void BuscarPerClientLlista(Client client) {
         EntityManager em = new EM_Controller().getEntityManager();
         System.out.println("Busqueda per idClient");

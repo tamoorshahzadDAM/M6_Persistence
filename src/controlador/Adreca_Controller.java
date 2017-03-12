@@ -19,6 +19,11 @@ import model.Client;
 public class Adreca_Controller {
     
     
+    /**
+     * Methodo que por parametros le pasamos un objeto adreca y lo inserta en 
+     * base de datos
+     * @param a 
+     */
     public void Insertar(Adreca a) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -42,7 +47,12 @@ public class Adreca_Controller {
         em.close();
     }
     
-    
+    /**
+     * Methodo que por parametros le pasamos un objeto adreca y lo modifica en 
+     * base de datos, con ayuda de otro methodo de buscar, primero busca y 
+     * luego modifica
+     * @param c 
+     */
     public void Modificar(Adreca c) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -66,6 +76,11 @@ public class Adreca_Controller {
         em.close();
     }
 
+    /**
+     * Methodo que por parametros le pasamos un objeto asseguradora y lo elimina en 
+     * base de datos.
+     * @param a 
+     */
     public void Eliminar(Adreca a) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -89,6 +104,9 @@ public class Adreca_Controller {
         em.close();
     }
     
+    /**
+     * Methodo que hace consulta en base de datos.
+     */
     public void Consulta() {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -103,8 +121,12 @@ public class Adreca_Controller {
         em.close();
     }
 
+    /**
+     * MEthodo para imprimir una lista
+     * @param lista 
+     */
     public void imprimirLista(List<Client> lista) {
-        System.out.println("Numero de clients= " + lista.size());
+        System.out.println("Numero de adrecas= " + lista.size());
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }

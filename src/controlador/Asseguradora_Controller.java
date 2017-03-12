@@ -18,6 +18,11 @@ import model.Usuari;
  */
 public class Asseguradora_Controller {
     
+    /**
+     * Methodo que por parametros le pasamos un objeto asseguradora y lo 
+     * inserta en base de datos.
+     * @param asseg 
+     */
     public void Insertar(Asseguradora asseg) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -42,6 +47,12 @@ public class Asseguradora_Controller {
     }
     
     
+    /**
+     * Methodo que por parametros le pasamos un objeto asseguradora y lo modifica en 
+     * base de datos, con ayuda de otro methodo de buscar, primero busca y 
+     * luego modifica.
+     * @param asseg 
+     */
     public void Modificar(Asseguradora asseg) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -65,6 +76,11 @@ public class Asseguradora_Controller {
         em.close();
     }
 
+    /**
+     * Methodo que por parametros le pasamos un objeto asseguradora y lo 
+     * elimina en base de datos.
+     * @param asseg 
+     */
     public void Eliminar(Asseguradora asseg) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -88,6 +104,12 @@ public class Asseguradora_Controller {
         em.close();
     }
     
+    /**
+     * Methodo que le paso por parametros un nombre, y lo busca en base de datos
+     * y devuelve.
+     * @param nom
+     * @return 
+     */
     public Asseguradora BuscarPerNom(String nom) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -104,10 +126,17 @@ public class Asseguradora_Controller {
         return a;
     }
     
+    /**
+     * Methodo para imprimir un objeto
+     * @param a 
+     */
     public void imprimir(Asseguradora a) {
         System.out.println(a);
     }
     
+    /**
+     * MEthodo que hace consulta en base de datos
+     */
     public void Consulta() {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -122,6 +151,10 @@ public class Asseguradora_Controller {
         em.close();
     }
 
+    /**
+     * Methodo para imprimir una lista
+     * @param lista 
+     */
     public void imprimirLista(List<Asseguradora> lista) {
         System.out.println("Numero d'assegurats= " + lista.size());
         for (int i = 0; i < lista.size(); i++) {

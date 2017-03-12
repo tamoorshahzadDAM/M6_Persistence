@@ -26,7 +26,7 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     //Query para mostrar asseguradora
-    @NamedQuery(name = Asseguradora.CONSULTA, query = "SELECT a FROM Asseguradora a WHERE a.nomasseg=:NomAsseg")})
+    @NamedQuery(name = Asseguradora.CONSULTA, query = "SELECT a FROM Asseguradora a WHERE a.nomasseg=:nombre")})
 //Nombre de tabla
 @Table(name = "M6UF2_Asseguradora")
 public class Asseguradora implements Serializable {

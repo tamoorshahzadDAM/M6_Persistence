@@ -19,7 +19,6 @@ public class M6_Practica_Persistence {
         
         /**
          DROP TABLE M6UF2_Adreca; 
-         
          DROP TABLE M6UF2_POLISSA; 
          DROP TABLE M6UF2_USUARI; 
          DROP TABLE VEHICLES;

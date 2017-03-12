@@ -17,6 +17,11 @@ import model.Usuari;
  */
 public class Usuari_Controller {
     
+    /**
+     * Methodo que por parametros le pasamos un objeto Usuari y lo 
+     * inserta en base de datos
+     * @param u 
+     */
     public void Insertar(Usuari u) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -40,7 +45,12 @@ public class Usuari_Controller {
         em.close();
     }
     
-    
+    /**
+     * Methodo que por parametros le pasamos un objeto Usuari y lo modifica en 
+     * base de datos, con ayuda de otro methodo de buscar, primero busca y 
+     * luego modifica.
+     * @param u 
+     */
     public void Modificar(Usuari u) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -64,6 +74,11 @@ public class Usuari_Controller {
         em.close();
     }
 
+    /**
+     * Methodo que por parametros le pasamos un objeto Usuari y lo 
+     * elimina en base de datos
+     * @param u 
+     */
     public void Eliminar(Usuari u) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -87,7 +102,9 @@ public class Usuari_Controller {
         em.close();
     }
     
-    
+    /**
+     * MEthodo que hace consulta en base de datos
+     */
     public void Consulta() {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -102,13 +119,23 @@ public class Usuari_Controller {
         em.close();
     }
 
+    /**
+     * Methodo para imprimir una lista
+     * @param lista 
+     */
     public void imprimirLista(List<Usuari> lista) {
-        System.out.println("Numero de clients= " + lista.size());
+        System.out.println("Numero de Usuaris= " + lista.size());
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }
     }
     
+    /**
+     * Methodo que le paso por parametros un nombre, y lo busca en base de datos
+     * y devuelve.
+     * @param nom
+     * @return 
+     */
     public Usuari BuscarPerNom(String nom) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();

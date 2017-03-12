@@ -19,7 +19,11 @@ import model.Vehicle;
 public class Vehicle_Controller {
     
     
-    
+    /**
+     * Methodo que por parametros le pasamos un objeto vehicle y lo 
+     * inserta en base de datos
+     * @param p 
+     */
     public void Insertar(Vehicle p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -42,7 +46,12 @@ public class Vehicle_Controller {
         em.close();
     }
     
-    
+    /**
+     * Methodo que por parametros le pasamos un objeto Vehicle y lo modifica en 
+     * base de datos, con ayuda de otro methodo de buscar, primero busca y 
+     * luego modifica.
+     * @param v 
+     */
     public void Modificar(Vehicle v) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -66,6 +75,11 @@ public class Vehicle_Controller {
         em.close();
     }
 
+    /**
+     * Methodo que por parametros le pasamos un objeto vehicle y lo 
+     * elimina en base de datos.
+     * @param p 
+     */
     public void Eliminar(Vehicle v) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -89,6 +103,9 @@ public class Vehicle_Controller {
         em.close();
     }
     
+    /**
+     * MEthodo que hace consulta en base de datos
+     */
     public void Consulta() {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -103,14 +120,42 @@ public class Vehicle_Controller {
         em.close();
     }
 
+    /**
+     * Methodo para imprimir una lista
+     * @param lista 
+     */
     public void imprimirLista(List<Vehicle> lista) {
-        System.out.println("Numero de clients= " + lista.size());
+        System.out.println("Numero de vehicles= " + lista.size());
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }
     }
     
-    public Vehicle Buscar(Long id) {
+    /**
+     * MEthodo que le paso una matricula por parametros y lo busca en base de datos
+     * y lo devuelve ese vehicle con esa matricula.
+     * @param mat
+     * @return 
+     */
+    public Vehicle cercaVehicleMat(String mat) {
+        // Recupera el entity manager
+        EntityManager em = new EM_Controller().getEntityManager();
+        System.out.println("Busqueda per matricula");
+        Query query = em.createNamedQuery("cercaVehicleMat", Vehicle.class);
+        query.setParameter("matricula", mat);
+        Vehicle v = (Vehicle) query.getSingleResult();
+        System.out.println("close");
+        em.close();
+        return v;
+    }
+    
+    /**
+     * Methodo que le paso por parametros un id de un vehicle, y lo busca en base de datos
+     * y devuelve ese vehicle.
+     * @param id
+     * @return 
+     */
+    public Vehicle cercaVehicle(Long id) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
 
@@ -124,7 +169,13 @@ public class Vehicle_Controller {
         return c;
     }
 
-    public Client BuscarClient(long id) {
+    /**
+     * Methodo que le paso por parametros un id de cliente, y lo busca en base de datos
+     * y devuelve ese cliente.
+     * @param id
+     * @return 
+     */
+    public Client cercaClient(long id) {
         EntityManager em = new EM_Controller().getEntityManager();
         System.out.println("Cerca de client per idClient ");
         Client c = (Client) em.find(Client.class, id);

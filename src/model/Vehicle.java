@@ -26,8 +26,10 @@ import org.hibernate.annotations.IndexColumn;
  */
 @Entity
 @NamedQueries({
-    //Query 
-    @NamedQuery(name="cercaClient", query="SELECT c FROM Client c WHERE c.idClient:id")
+    //Queries
+    @NamedQuery(name="cercaClient", query="SELECT c FROM Client c WHERE c.idClient:id"),
+    @NamedQuery(name="cercaVehicle", query="SELECT c FROM Vehicle c WHERE c.idVehicle:id"),
+    @NamedQuery(name = "cercaVehicleMat", query = "Select v FROM Vehicle v WHERE v.matricula=:matricula")
 })
 @Table(name = "VEHICLES")
 public class Vehicle implements Serializable {

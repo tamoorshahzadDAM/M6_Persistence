@@ -17,6 +17,11 @@ import model.Client;
  */
 public class Client_Controller {
     
+    /**
+     * Methodo que por parametros le pasamos un objeto Client y lo 
+     * inserta en base de datos
+     * @param c 
+     */
     public void Insertar(Client c) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -40,7 +45,12 @@ public class Client_Controller {
         em.close();
     }
     
-    
+    /**
+     * Methodo que por parametros le pasamos un objeto Client y lo modifica en 
+     * base de datos, con ayuda de otro methodo de buscar, primero busca y 
+     * luego modifica.
+     * @param c 
+     */
     public void Modificar(Client c) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -64,6 +74,11 @@ public class Client_Controller {
         em.close();
     }
 
+    /**
+     * Methodo que por parametros le pasamos un objeto Client y lo 
+     * elimina en base de datos
+     * @param c 
+     */
     public void Eliminar(Client c) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
@@ -87,7 +102,12 @@ public class Client_Controller {
         em.close();
     }
     
-    
+    /**
+     * Methodo que le paso por parametros un nombre, y lo busca en base de datos
+     * y devuelve.
+     * @param nom
+     * @return 
+     */
     public Client BuscarPerNom(String nom) {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -104,10 +124,17 @@ public class Client_Controller {
         return c;
     }
     
+    /**
+     * Methodo para imprimir un objeto cliente
+     * @param c 
+     */
     public void imprimir(Client c) {
         System.out.println(c);
     }
+    
     /**
+     * MEthodo que hace consulta en base de datos
+     */
     public void Consulta() {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -122,6 +149,10 @@ public class Client_Controller {
         em.close();
     }
 
+    /**
+     * Methodo para imprimir una lista
+     * @param lista 
+     */
     public void imprimirLista(List<Client> lista) {
         System.out.println("Numero de clients= " + lista.size());
         for (int i = 0; i < lista.size(); i++) {
@@ -129,5 +160,5 @@ public class Client_Controller {
         }
     }
     
-    */
+    
 }
