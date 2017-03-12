@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import model.Asseguradora;
+import model.Client;
 import model.Vehicle;
 
 /**
@@ -20,7 +20,7 @@ public class Vehicle_Controller {
     
     
     
-    public void Insertar(Vehicle v) {
+    public void Insertar(Vehicle p) {
         // Recupera el entity manager
         EM_Controller oem = new EM_Controller();
         EntityManager em = oem.getEntityManager();
@@ -33,10 +33,9 @@ public class Vehicle_Controller {
         etx.begin();
 
         System.out.println("persist");
-        em.persist(v);
+        em.persist(p);
 
         System.out.println("commit");
-        //em.getTransaction().commit();
         etx.commit();
 
         System.out.println("close");
@@ -109,5 +108,29 @@ public class Vehicle_Controller {
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i));
         }
+    }
+    
+    public Vehicle Buscar(Long id) {
+        // Recupera el entity manager
+        EntityManager em = new EM_Controller().getEntityManager();
+
+        System.out.println("busqueda per idVehicle");
+
+        Vehicle c = (Vehicle) em.find(Vehicle.class, id);
+
+        System.out.println("close");
+        em.close();
+
+        return c;
+    }
+
+    public Client BuscarClient(long id) {
+        EntityManager em = new EM_Controller().getEntityManager();
+        System.out.println("Cerca de client per idClient ");
+        Client c = (Client) em.find(Client.class, id);
+        System.out.println(c);
+        System.out.println("close");
+        em.close();
+        return c;
     }
 }

@@ -35,18 +35,18 @@ public class NewMain {
 
         Vehicle vehicle = new Vehicle("0295CDY", "Renault", 2003, client, null);
         Asseguradora asse = new Asseguradora("Mutua", "x8587455z");
-        Polissa pol = new Polissa("1234", pre, vehicle, client, sdf.parse("11-03-2017"), sdf.parse("11-03-2018"), true, asse, 400);
+        Polissa pol = new Polissa("12345679", pre, vehicle, client, sdf.parse("11-03-2017"), sdf.parse("11-03-2018"), true, asse, 400);
 
         
         
        // *******************************  Client *********************************
         
-/**
+
         // --------- Insertar Cliente ------------
         
         Client_Controller cc = new Client_Controller();
         //cc.Insertar(client);
- */
+ 
 
 /**
         // ---------------- Elimina -------------------
@@ -96,8 +96,12 @@ public class NewMain {
         uc.Eliminar(u);
 */
 
+        Polissa_Controller pc = new Polissa_Controller();
+        pc.Insertar(pol);
+
+
         Vehicle_Controller vehi = new Vehicle_Controller();
-        vehi.Insertar(vehicle);
+        //vehi.Insertar(vehicle);
 
     }
 

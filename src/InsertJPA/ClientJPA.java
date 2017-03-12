@@ -29,12 +29,12 @@ public class ClientJPA {
             cli1.setNif("X8587455Z");
             cli1.setNom("Tamoor Shahzad");
             cli1.setAdreca(adr);
-/**
+
             //------------ INSERTAR -----------------------
             Client_Controller cc = new Client_Controller();
-            //cc.Insertar(cli1);
+            cc.Insertar(cli1);
             ///  ------------------------------------------
-*/
+
 
 /**
             /// ----------- BUSCAR ------------------------

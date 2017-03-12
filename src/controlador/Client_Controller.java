@@ -107,7 +107,7 @@ public class Client_Controller {
     public void imprimir(Client c) {
         System.out.println(c);
     }
-    
+    /**
     public void Consulta() {
         // Recupera el entity manager
         EntityManager em = new EM_Controller().getEntityManager();
@@ -129,5 +129,5 @@ public class Client_Controller {
         }
     }
     
-    
+    */
 }
